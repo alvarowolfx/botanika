@@ -1,0 +1,44 @@
+<ion-view view-title="{{vm.isEditing ? 'Editando Pesquisa' : 'Nova pesquisa'}}">
+    <ion-content class="padding">
+        <div class="list card">
+            <form name='researchForm'>
+                <label class="item item-input item-stacked-label" ng-class="{ 'item-error' : researchForm.name.$error.required }">
+                    <span class="input-label">Nome</span>
+                    <input type='text' placeholder="Informe nome do projeto" ng-model='vm.research.name' name='name' required>
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Descrição</span>
+                    <textarea placeholder="Descrição do projeto" ng-model='vm.research.description'></textarea>
+                </label>
+            </form>
+        </div>
+        <ion-list class="list card" can-swipe="'true'">
+            <label class="item item-divider">
+                Adicionar métricas da pesquisa
+            </label>
+            <ion-item class="item item-icon-left" ng-repeat="metric in vm.research.metrics">
+                {{ metric.name }}
+                <span class="item-note">{{ vm.types[metric.type] }}</span>
+                <ion-option-button class="button-assertive" ng-click='vm.removeMetric($index)'>
+                    Remover
+                </ion-option-button>
+            </ion-item>
+            <form name='metricForm'>
+                <label class="item item-input item-select" ng-class="{ 'item-error' : metricForm.name.$error.required}">
+                    <input type='text' placeholder="Informe nome da métrica" ng-model='vm.metric.name' name='name' required>
+                    <select ng-model="vm.metric.type">
+                        <option ng-repeat='type in vm.types' value="{{$index}}">
+                            {{type}}
+                        </option>
+                    </select>
+                </label>
+                <button class='item item-icon-left assertive' ng-click="vm.addMetric()" ng-disabled='metricForm.$invalid'>
+                    <i class='icon ion-plus'></i> Adicionar métrica
+                </button>
+            </form>
+        </ion-list>
+        <button class='button button-block button-balanced' ng-click='vm.saveResearch()'>
+            Salvar Pesquisa
+        </button>
+    </ion-content>
+</ion-view>
