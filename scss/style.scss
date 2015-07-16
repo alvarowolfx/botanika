@@ -1,0 +1,26 @@
+.img-avatar {
+    @include border-radius(50%);
+    border: 5px solid black;
+    width: 100px;
+}
+
+.item-error {
+    border-bottom: 2px solid $assertive;
+    color: $assertive;
+    ::-webkit-input-placeholder {
+        color: lighten($assertive, 20%);
+    }
+}
+
+.card {
+    &.ng-enter, &.ng-leave, &.ng-move {
+        @include transition(0.5s linear all);
+        opacity: 0;
+    }
+    &.ng-enter-stagger {
+        @include transition-delay(0.2s);
+    }
+    &.ng-enter.ng-enter-active {
+        opacity: 1;
+    }
+}
