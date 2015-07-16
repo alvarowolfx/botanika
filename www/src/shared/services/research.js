@@ -2,9 +2,9 @@
     angular.module('botanika')
         .service('Research', Research);
 
-    Research.$inject = ['$http', '$q', 'pouchDB'];
+    Research.$inject = ['Database', '$q', 'pouchDB'];
 
-    function Research($http, $q, pouchDB) {
+    function Research(Database, $q, pouchDB) {
 
         var service = {
             getAll: getAll,
@@ -13,27 +13,8 @@
             save: save
         }
 
-        var db = pouchDB('botanika');
-
-        function createDesignDoc(name, mapFunction) {
-            var ddoc = {
-                _id: '_design/' + name,
-                views: {
-
-                }
-            };
-            ddoc.views[name] = {
-                map: mapFunction.toString()
-            };
-            return ddoc;
-        }
-
-        var researchDesignDoc = createDesignDoc('research', function(doc) {
-            if (doc.type === 'research') {
-                emit(doc._id);
-            };
-        });
-        db.put(researchDesignDoc);
+        var db = Database.getDatabase();
+        Database.registerModel('research');
 
         return service;
 
