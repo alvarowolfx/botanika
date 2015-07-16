@@ -1,11 +1,12 @@
 (function() {
     angular
         .module('botanika.config', [])
-        .config(Config);
+        .config(RouterConfig)
+        .config(StatusBarConfig);
 
-    Config.$inject = ['$stateProvider', '$urlRouterProvider'];
+    RouterConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
 
-    function Config($stateProvider, $urlRouterProvider) {
+    function RouterConfig($stateProvider, $urlRouterProvider) {
 
         $stateProvider
             .state('research', {
@@ -33,7 +34,7 @@
                     }
                 }
             })
-            .state('research.records',{
+            .state('research.records', {
                 url: '/:researchId/records',
                 parent: 'research',
                 views: {
@@ -43,7 +44,7 @@
                     }
                 }
             })
-            .state('research.records.new',{
+            .state('research.records.new', {
                 url: '/new',
                 parent: 'research.records',
                 views: {
@@ -57,4 +58,16 @@
         $urlRouterProvider.otherwise("/research");
 
     };
+
+    StatusBarConfig.$inject = ['$ionicPlatform', '$cordovaStatusbar'];
+
+    function StatusBarConfig($ionicPlatform, $cordovaStatusbar) {
+        $ionicPlatform.ready(function() {
+            if ($ionicPlatform.isIOS()) {
+                $cordovaStatusbar.overlaysWebView(true);
+                $cordovaStatusbar.style(0);
+            }
+        });
+    }
+
 })();

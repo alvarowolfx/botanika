@@ -5,6 +5,7 @@
     "ionic": "driftyco/ionic-bower#1.0.1"
   },
   "dependencies": {
-    "angular-pouchdb": "~2.1.1"
+    "angular-pouchdb": "~2.1.1",
+    "ngCordova": "~0.1.17-alpha"
   }
 }
