@@ -1,17 +1,43 @@
 <ion-view view-title="Pesquisas">
     <ion-nav-buttons side='secondary'>
-        <button class='button button-clear' ng-if="vm.researchs.length > 0">
+        <button class='button button-clear' ui-sref='research.new()' ng-if="vm.researchs.length > 0">
             <i class='icon ion-plus'></i>
         </button>
     </ion-nav-buttons>
     <ion-content class="padding">
-        <div class="list" ng-if="vm.researchs.length == 0">
+        <div class="list" ng-if="vm.loading">
+            <div class="card">
+                <div class="item">
+                    <h2>Carregando</h2>
+                </div>
+            </div>
+        </div>
+        <div class="list" ng-if="vm.researchs.length == 0 && !vm.loading">
             <div class="card">
                 <div class="item">
                     <h2>Nenhuma pesquisa criada</h2>
                 </div>
-                <a class="item item-icon-left balanced">
+                <a class="item item-icon-left balanced" ui-sref='research.new()'>
                     <i class="icon ion-plus"></i> Criar pesquisa
+                </a>
+            </div>
+        </div>
+        <div class="card" ng-repeat="res in vm.researchs">
+            <div class="item item-divider">
+                <h2>{{res.doc.name}}</h2>
+            </div>
+            <div class="item item-text-wrap">
+                {{ res.doc.description | seeMore }}
+            </div>
+            <div class='item tabs tabs-secondary tabs-icon-left'>
+                <a class="tab-item">
+                    <i class="icon ion-folder"></i> Abrir pesquisa
+                </a>
+                <a class="tab-item" ui-sref='research.edit({ id: res.id })'>
+                    <i class="icon ion-edit"></i> Editar pesquisa
+                </a>
+                <a class="tab-item" ng-click='vm.remove(res.id)'>
+                    <i class="icon ion-trash-b"></i> Remover pesquisa
                 </a>
             </div>
         </div>
