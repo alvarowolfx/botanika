@@ -32,6 +32,16 @@
                         controller: 'ResearchController as vm'
                     }
                 }
+            })
+            .state('research.records',{
+                url: '/:researchId/records',
+                parent: 'research',
+                views: {
+                    '@': {
+                        templateUrl: "src/record/record.list.html",
+                        controller: 'RecordListController as vm'
+                    }
+                }
             });
 
         $urlRouterProvider.otherwise("/research");

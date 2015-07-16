@@ -1,0 +1,26 @@
+<ion-view view-title="Registros">
+    <ion-nav-buttons side='secondary'>
+        <button class='button button-clear' ng-if="vm.records.length > 0">
+            <i class='icon ion-plus'></i>
+        </button>
+    </ion-nav-buttons>
+    <ion-content class="padding">
+        <div class="list" ng-if="vm.loading">
+            <div class="card">
+                <div class="item">
+                    <h2>Carregando</h2>
+                </div>
+            </div>
+        </div>
+        <div class="list" ng-if="vm.records.length == 0 && !vm.loading">
+            <div class="card">
+                <div class="item">
+                    <h2>Nenhum registro encontrado</h2>
+                </div>
+                <a class="item item-icon-left balanced">
+                    <i class="icon ion-plus"></i> Criar registro
+                </a>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

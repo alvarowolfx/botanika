@@ -22,15 +22,15 @@
                 </a>
             </div>
         </div>
-        <div class="card" ng-repeat="res in vm.researchs">
+        <div class="card card-fade" ng-repeat="res in vm.researchs">
             <div class="item item-divider">
                 <h2>{{res.doc.name}}</h2>
             </div>
             <div class="item item-text-wrap">
                 {{ res.doc.description | seeMore }}
             </div>
-            <div class='item tabs tabs-secondary tabs-icon-left'>
-                <a class="tab-item">
+            <div class='item tabs tabs-secondary tabs-icon-left' >
+                <a class="tab-item" ui-sref='research.records({ researchId: res.id })'>
                     <i class="icon ion-folder"></i> Abrir pesquisa
                 </a>
                 <a class="tab-item" ui-sref='research.edit({ id: res.id })'>

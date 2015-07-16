@@ -12,7 +12,7 @@
     }
 }
 
-.card {
+.card-fade {
     &.ng-enter, &.ng-leave, &.ng-move {
         @include transition(0.5s linear all);
         opacity: 0;
