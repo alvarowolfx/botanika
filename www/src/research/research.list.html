@@ -1,0 +1,20 @@
+<ion-view view-title="Pesquisas">
+    <ion-nav-buttons side='secondary'>
+        <button class='button button-clear' ng-if="vm.researchs.length > 0">
+            <i class='icon ion-plus'></i>
+        </button>
+    </ion-nav-buttons>
+    <ion-content class="padding">
+        <div class="list" ng-if="vm.researchs.length == 0">
+            <div class="card">
+                <div class="item">
+                    <h2>Nenhuma pesquisa criada</h2>
+                </div>
+                <a class="item item-icon-left balanced">
+                    <i class="icon ion-plus"></i> Criar pesquisa
+                </a>
+            </div>
+        </div>
+        </div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,13 @@
+{
+  "name": "botanika",
+  "app_id": "",
+  "gulpStartupTasks": [
+    "sass",
+    "scripts",
+    "watch"
+  ],
+  "watchPatterns": [
+    "www/**/*",
+    "!www/lib/**/*"
+  ]
+}
