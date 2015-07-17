@@ -23,12 +23,12 @@
             </div>
         </div>
         <ion-list class='list' can-swipe="true">
-            <ion-item class='item item-icon-left item-icon-right' ng-repeat="rec in vm.records">
+            <ion-item class='item item-icon-left item-icon-right' ui-sref='research.records.show({ id: rec.id })' ng-repeat="rec in vm.records">
                 <i class="icon ion-beaker"></i>
                 <span class="item-note">
                      {{rec.doc.createdAt | date:'d/MM/y h:mm:ss a' }}
                 </span>
-                <ion-option-button class="button-assertive">
+                <ion-option-button class="button-assertive" ng-click='vm.remove(rec.id)'>
                     Remover
                 </ion-option-button>
             </ion-item>
