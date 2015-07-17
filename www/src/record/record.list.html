@@ -1,6 +1,6 @@
 <ion-view view-title="Registros">
     <ion-nav-buttons side='secondary'>
-        <button class='button button-clear' ng-if="vm.records.length > 0">
+        <button class='button button-clear' ng-if="vm.records.length > 0" ui-sref='research.records.new()'>
             <i class='icon ion-plus'></i>
         </button>
     </ion-nav-buttons>
@@ -22,5 +22,16 @@
                 </a>
             </div>
         </div>
+        <ion-list class='list' can-swipe="true">
+            <ion-item class='item item-icon-left item-icon-right' ng-repeat="rec in vm.records">
+                <i class="icon ion-beaker"></i>
+                <span class="item-note">
+                     {{rec.doc.createdAt | date:'d/MM/y h:mm:ss a' }}
+                </span>
+                <ion-option-button class="button-assertive">
+                    Remover
+                </ion-option-button>
+            </ion-item>
+        </ion-list>
     </ion-content>
 </ion-view>

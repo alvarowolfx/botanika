@@ -1,6 +1,11 @@
 <ion-view view-title="{{vm.isShowing ? 'Visualizando' : 'Novo' }} registro">
     <ion-content class="padding">
-        <div class="row">
+        <div class='list card' ng-if="vm.record.photo">
+            <div class='item item-image'>
+                <img ng-src='data:image/jpeg;base64,{{ vm.record.photo }}'>
+            </div>
+        </div>
+        <div class="row" ng-if='::vm.cameraAvailable'>
             <div class="col">
                 <button class='button button-clear button-block button-balanced' ng-click='vm.takePicture()'>
                     <i class='icon ion-camera'></i> Tirar foto
@@ -31,7 +36,7 @@
                 </label>
             </form>
         </div>
-        <button class='button button-block button-balanced' ng-click='vm.saveResearch()'>
+        <button class='button button-block button-balanced' ng-click='vm.saveRecord()'>
             Salvar Registro
         </button>
     </ion-content>
