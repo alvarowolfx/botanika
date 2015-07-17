@@ -8,7 +8,7 @@
     function ResearchListController(Research, $scope, $ionicLoading) {
         var vm = this;
 
-        $scope.$on('$ionicView.beforeEnter', function(){
+        $scope.$on('$ionicView.beforeEnter', function() {
             vm.researchs = [];
             reload();
         });
@@ -17,7 +17,7 @@
 
         vm.remove = remove;
 
-        function reload(){
+        function reload() {
             vm.loading = true;
             Research.getAll().then(function(researchs) {
                 vm.loading = false;
@@ -25,11 +25,11 @@
             });
         };
 
-        function remove(id){
+        function remove(id) {
             $ionicLoading.show({
                 template: 'Removendo projeto ...'
             });
-            Research.remove(id).finally(function(result){
+            Research.remove(id).finally(function(result) {
                 reload();
                 $ionicLoading.hide();
             });

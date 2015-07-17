@@ -7693,12 +7693,6 @@ a.button {
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
 
-.img-avatar {
-  -webkit-border-radius: 50%;
-  border-radius: 50%;
-  border: 5px solid black;
-  width: 100px; }
-
 .item-error {
   border-bottom: 2px solid #ef473a;
   color: #ef473a; }
