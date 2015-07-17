@@ -3,9 +3,9 @@
         .module('botanika.research')
         .controller('RecordEditController', RecordEditController);
 
-    RecordEditController.$inject = ['$state', '$ionicHistory', 'Record'];
+    RecordEditController.$inject = ['$state', '$ionicHistory', 'Record', '$cordovaGeolocation'];
 
-    function RecordEditController($state, $ionicHistory, Record) {
+    function RecordEditController($state, $ionicHistory, Record, $cordovaGeolocation) {
         var vm = this;
 
         var researchId = $state.params.researchId;
@@ -13,11 +13,14 @@
         vm.isShowing = !!id;
 
         vm.saveRecord = saveRecord;
+        vm.selectPicture = selectPicture;
+        vm.takePicture = takePicture;
 
         if (vm.isShowing) {
             loadRecord(id);
         } else {
             resetRecord();
+            getLocation();
         }
 
         function loadRecord(id) {
@@ -27,7 +30,7 @@
         }
 
         function resetRecord() {
-            vm.research = {
+            vm.record = {
                 measures: [],
                 observation: "",
                 photo: null,
@@ -36,11 +39,32 @@
                     lon: null
                 }
             }
+            vm.locationStatus = null;
         }
 
+        function getLocation(){
+            $cordovaGeolocation.getCurrentPosition({
+                enableHighAccuracy: true
+            }).then(function(position){
+                vm.record.location.lat = position.coords.latitude;
+                vm.record.location.lon = position.coords.longitude;
+                vm.locationStatus = 'success';
+            }, function(err){
+                //Handle geoloc error
+                vm.locationStatus = 'error';
+            });
+        }
 
         function saveRecord() {
             $ionicHistory.goBack();
+        }
+
+        function takePicture(){
+
+        }
+
+        function selectPicture(){
+
         }
     }
 })();

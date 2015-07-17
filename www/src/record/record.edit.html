@@ -14,10 +14,16 @@
         </div>
         <div class="list card">
             <form name='recordForm'>
-                <label class="item text-center positive">
+                <label class="item text-center positive" ng-show='vm.locationStatus == null'>
                     <span>Obtendo localização ...</span>
                     <br/>
                     <ion-spinner></ion-spinner>
+                </label>
+                <label class="item text-center" ng-show="vm.locationStatus == 'success' ">
+                    <span class='balanced'>
+                        Localização Obtida com Sucesso!!!
+                    </span>
+                    <br/> {{ vm.record.location.lat }} , {{ vm.record.location.lat }}
                 </label>
                 <label class="item item-input item-stacked-label">
                     <span class="input-label">Observação</span>
