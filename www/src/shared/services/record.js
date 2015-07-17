@@ -8,7 +8,9 @@
 
         var service = {
             allByResearch: allByResearch,
-            save: save
+            save: save,
+            load: load,
+            remove: remove
         }
 
         var db = Database.getDatabase();
@@ -38,16 +40,32 @@
             });
         }
 
-        function load(id){
-            return $q.when(db.get(id));
+        function load(id, attachments) {
+            if (typeof attachments === 'undefined') {
+                attachments = false;
+            }
+            return $q.when(db.get(id, {
+                attachments: attachments
+            })).then(function(doc){
+                if(attachments && doc._attachments){
+                    doc.photo = doc._attachments['photo'].data;
+                }
+                return doc;
+            });
+        }
+
+        function remove(id) {
+            return load(id).then(function(doc) {
+                return db.remove(doc);
+            });
         }
 
         function save(record) {
-            if(record._id){
+            if (record._id) {
                 return $q.reject('Record cannot be updated');
             }
 
-            if(!record.researchId){
+            if (!record.researchId) {
                 return $q.reject('Research id is required');
             }
             if (record.photo) {

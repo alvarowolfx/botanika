@@ -25,7 +25,7 @@
         }
 
         function loadRecord(id) {
-            Record.load(id).then(function(record) {
+            Record.load(id, true).then(function(record) {
                 vm.record = record;
             });
         }
