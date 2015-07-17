@@ -19,7 +19,8 @@
   "cordovaPlugins": [
     "cordova-plugin-camera",
     "cordova-plugin-geolocation",
-    "cordova-plugin-statusbar"
+    "cordova-plugin-statusbar",
+    "io.litehelpers.cordova.sqlitestorage"
   ],
   "cordovaPlatforms": []
 }
