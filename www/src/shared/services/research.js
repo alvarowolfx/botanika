@@ -14,7 +14,12 @@
         }
 
         var db = Database.getDatabase();
-        Database.registerModel('research');
+        var researchDesignDoc = Database.createDesignDoc('research', function(doc) {
+            if (doc.type === 'research') {
+                emit(doc._id);
+            }
+        });
+        db.put(researchDesignDoc);
 
         return service;
 

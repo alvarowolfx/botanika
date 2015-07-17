@@ -12,7 +12,12 @@
         }
 
         var db = Database.getDatabase();
-        Database.registerModel('record');
+        var recordDesignDoc = Database.createDesignDoc('record', function(doc) {
+            if (doc.type === 'record') {
+                emit(doc._id);
+            }
+        });
+        db.put(recordDesignDoc);
 
         return service;
 

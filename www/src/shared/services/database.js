@@ -8,13 +8,14 @@
 
         var service = {
             getDatabase: getDatabase,
-            createDesignDoc: createDesignDoc,
-            registerModel: registerModel
+            createDesignDoc: createDesignDoc
         }
 
-        var db = pouchDB('botanika');
+        var db = pouchDB('botanika', {
+            adapter: 'websql'
+        });
 
-        function getDatabase(){
+        function getDatabase() {
             return db;
         }
 
@@ -29,15 +30,6 @@
                 map: mapFunction.toString()
             };
             return ddoc;
-        }
-
-        function registerModel(modelName){
-            var modelDesignDoc = createDesignDoc(modelName,function(doc){
-                if(doc.type === modelName){
-                    emit(doc._id);
-                }
-            });
-            db.put(modelDesignDoc);
         }
 
         return service;
