@@ -2,7 +2,7 @@
     angular
         .module('botanika.config', [])
         .config(RouterConfig)
-        .config(StatusBarConfig);
+        .run(StatusBarConfig);
 
     RouterConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
 
@@ -59,13 +59,15 @@
 
     };
 
-    StatusBarConfig.$inject = ['$ionicPlatform', '$cordovaStatusbar'];
+    StatusBarConfig.$inject = ['$ionicPlatform', '$cordovaStatusbar', '$cordovaKeyboard'];
 
-    function StatusBarConfig($ionicPlatform, $cordovaStatusbar) {
+    function StatusBarConfig($ionicPlatform, $cordovaStatusbar, $cordovaKeyboard) {
         $ionicPlatform.ready(function() {
-            if ($ionicPlatform.isIOS()) {
+            if (ionic.Platform.isIOS()) {
                 $cordovaStatusbar.overlaysWebView(true);
-                $cordovaStatusbar.style(0);
+                $cordovaStatusbar.style(1);
+
+                $cordovaKeyboard.disableScroll(true);
             }
         });
     }
