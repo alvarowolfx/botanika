@@ -42,6 +42,12 @@
                         templateUrl: "src/record/record.list.html",
                         controller: 'RecordListController as vm'
                     }
+                },
+                resolve: {
+                    Research: 'Research',
+                    research: function (Research, $stateParams) {
+                        return Research.load($stateParams.researchId);
+                    }
                 }
             })
             .state('research.records.new', {
