@@ -3,24 +3,18 @@
         .module('botanika.research')
         .controller('RecordListController', RecordListController);
 
-    RecordListController.$inject = ['Record', 'Research', '$state', '$scope', '$ionicNavBarDelegate'];
+    RecordListController.$inject = ['Record', 'Research', '$scope', 'research'];
 
-    function RecordListController(Record, Research, $state, $scope, $ionicNavBarDelegate) {
+    function RecordListController(Record, Research, $scope, research) {
         var vm = this;
 
-        var researchId = $state.params.researchId;
-        $scope.$on('$ionicView.afterEnter', function() {
-            Research.load(researchId).then(function(research) {
-                $ionicNavBarDelegate.title(research.name);
-            });
-        });
+        vm.research = research;
+        var researchId = research._id;
 
-        $scope.$on('$ionicView.beforeEnter', function() {
+        $scope.$on('$ionicView.beforeEnter', function () {
             vm.records = [];
             reload();
         });
-        vm.records = [];
-        reload();
 
         vm.remove = remove;
 
