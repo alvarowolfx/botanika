@@ -1,6 +1,8 @@
 # Botanika App
 This app was developed for demo purposes using Ionic and PouchDB for offline first apps. So I'm sharing the code for those who are interested in studying.
 
+The presentation about the app can be seen [here](http://www.slideshare.net/alvarowolfx/offline-apps-using-ionic-framework-and-pouchdb).
+
 ## Pre requirements
 - Node.js and NPM installed (I recommend to do something like [this](https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md) to install global packages without sudo )
 - Ionic CLI installed, use this command to install globally the ionic command :
