@@ -2,7 +2,7 @@
     <ion-content class="padding">
         <div class="list card">
             <form name='researchForm'>
-                <label class="item item-input item-stacked-label" ng-class="{ 'item-error' : researchForm.name.$error.required }">
+                <label class="item item-input item-stacked-label" ng-class="{ 'item-error' : researchForm.name.$error.required && !researchForm.$pristine }">
                     <span class="input-label">Nome</span>
                     <input type='text' placeholder="Informe nome do projeto" ng-model='vm.research.name' name='name' required>
                 </label>
@@ -23,8 +23,8 @@
                     Remover
                 </ion-option-button>
             </ion-item>
-            <form name='metricForm'>
-                <label class="item item-input item-select" ng-class="{ 'item-error' : metricForm.name.$error.required}">
+            <form name='metricForm' ng-submit="vm.addMetric(metricForm)">
+                <label class="item item-input item-select" ng-class="{ 'item-error' : metricForm.name.$error.required && metricForm.$submitted }">
                     <input type='text' placeholder="Informe nome da métrica" ng-model='vm.metric.name' name='name' required>
                     <select ng-model="vm.metric.type">
                         <option ng-repeat='type in vm.types' value="{{$index}}">
@@ -32,12 +32,12 @@
                         </option>
                     </select>
                 </label>
-                <button class='item item-icon-left assertive' ng-click="vm.addMetric()" ng-disabled='metricForm.$invalid'>
+                <button class='item item-icon-left assertive' type='submit'>
                     <i class='icon ion-plus'></i> Adicionar métrica
                 </button>
             </form>
         </ion-list>
-        <button class='button button-block button-balanced' ng-click='vm.saveResearch()'>
+        <button class='button button-block button-balanced' ng-click='vm.saveResearch(researchForm)'>
             Salvar Pesquisa
         </button>
     </ion-content>

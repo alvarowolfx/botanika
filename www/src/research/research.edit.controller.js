@@ -48,21 +48,28 @@
             };
         }
 
-        function addMetric() {
-            var metric = angular.copy(vm.metric);
-            vm.research.metrics.push(metric);
-            resetMetric();
+        function addMetric(metricForm) {
+            if(metricForm.$valid){
+                var metric = angular.copy(vm.metric);
+                vm.research.metrics.push(metric);
+                metricForm.$setPristine();
+                resetMetric();
+            }
         }
 
         function removeMetric(index) {
             vm.research.metrics.splice(index, 1);
         }
 
-        function saveResearch() {
-            var research = angular.copy(vm.research);
-            Research.save(research).then(function() {
-                $ionicHistory.goBack();
-            });
+        function saveResearch(researchForm) {
+            if(researchForm.$valid){
+                var research = angular.copy(vm.research);
+                Research.save(research).then(function() {
+                    $ionicHistory.goBack();
+                });
+            }else{
+                researchForm.$setDirty();
+            }
         }
     }
 })();
