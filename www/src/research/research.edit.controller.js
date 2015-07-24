@@ -49,7 +49,7 @@
         }
 
         function addMetric(metricForm) {
-            if(metricForm.$valid){
+            if (metricForm.$valid) {
                 var metric = angular.copy(vm.metric);
                 vm.research.metrics.push(metric);
                 metricForm.$setPristine();
@@ -62,12 +62,12 @@
         }
 
         function saveResearch(researchForm) {
-            if(researchForm.$valid){
+            if (researchForm.$valid) {
                 var research = angular.copy(vm.research);
                 Research.save(research).then(function() {
                     $ionicHistory.goBack();
                 });
-            }else{
+            } else {
                 researchForm.$setDirty();
             }
         }
