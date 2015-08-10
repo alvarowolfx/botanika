@@ -7,5 +7,8 @@
   "dependencies": {
     "angular-pouchdb": "~2.1.1",
     "ngCordova": "~0.1.17-alpha"
+  },
+  "resolutions": {
+    "angular": ">= 1.4.3"
   }
 }
