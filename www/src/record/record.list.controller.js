@@ -1,6 +1,6 @@
 (function() {
     angular
-        .module('botanika.research')
+        .module('botanika.record')
         .controller('RecordListController', RecordListController);
 
     RecordListController.$inject = ['Record', 'Research', '$scope', 'research'];

@@ -1,6 +1,6 @@
 (function() {
     angular
-        .module('botanika.research')
+        .module('botanika.record')
         .controller('RecordEditController', RecordEditController);
 
     RecordEditController.$inject = ['$state', '$ionicHistory', 'Record', '$cordovaGeolocation', '$cordovaCamera'];
