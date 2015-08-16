@@ -44,10 +44,9 @@
                     }
                 },
                 resolve: {
-                    Research: 'Research',
-                    research: function (Research, $stateParams) {
+                    research: ['Research', '$stateParams', function(Research, $stateParams) {
                         return Research.load($stateParams.researchId);
-                    }
+                    }]
                 }
             })
             .state('research.records.new', {
